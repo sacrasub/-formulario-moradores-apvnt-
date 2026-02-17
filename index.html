@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Moradores - APVNT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="formSection" class="form-section">
+            <header class="form-header">
+                <h1>Cadastro de Moradores - APVNT</h1>
+                <p class="subtitle">Preencha todos os campos obrigatórios marcados com *</p>
+            </header>
+
+            <form id="cadastroForm">
+                <!-- Seção 1: Dados Pessoais -->
+                <section class="form-group">
+                    <h2>Dados Pessoais</h2>
+
+                    <div class="field">
+                        <label for="posto">Posto/Graduação *</label>
+                        <select id="posto" name="posto" required>
+                            <option value="">Selecione...</option>
+                            <option value="Almirante">Almirante</option>
+                            <option value="Vice-Almirante">Vice-Almirante</option>
+                            <option value="Contra-Almirante">Contra-Almirante</option>
+                            <option value="Capitão de Mar e Guerra">Capitão de Mar e Guerra</option>
+                            <option value="Capitão de Fragata">Capitão de Fragata</option>
+                            <option value="Capitão de Corveta">Capitão de Corveta</option>
+                            <option value="Capitão-Tenente">Capitão-Tenente</option>
+                            <option value="Primeiro-Tenente">Primeiro-Tenente</option>
+                            <option value="Segundo-Tenente">Segundo-Tenente</option>
+                            <option value="Guarda-Marinha">Guarda-Marinha</option>
+                            <option value="Suboficial">Suboficial</option>
+                            <option value="Primeiro-Sargento">Primeiro-Sargento</option>
+                            <option value="Segundo-Sargento">Segundo-Sargento</option>
+                            <option value="Terceiro-Sargento">Terceiro-Sargento</option>
+                            <option value="Cabo">Cabo</option>
+                            <option value="Marinheiro">Marinheiro</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="nomeCompleto">Nome Completo *</label>
+                        <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="nip">NIP *</label>
+                        <input type="text" id="nip" name="nip" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="dataNascimentoTitular">Data de Nascimento do Titular *</label>
+                        <input type="date" id="dataNascimentoTitular" name="dataNascimentoTitular" required>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="endereco">Endereço PNR *</label>
+                        <select id="endereco" name="endereco" required>
+                            <option value="">Selecione...</option>
+                            <option value="Ed. SG Lisboa - Apto 101">Ed. SG Lisboa - Apto 101</option>
+                            <option value="Ed. SG Lisboa - Apto 102">Ed. SG Lisboa - Apto 102</option>
+                            <option value="Ed. SG Lisboa - Apto 103">Ed. SG Lisboa - Apto 103</option>
+                            <option value="Ed. SG Lisboa - Apto 104">Ed. SG Lisboa - Apto 104</option>
+                            <option value="Ed. SG Lisboa - Apto 105">Ed. SG Lisboa - Apto 105</option>
+                            <option value="Ed. SG Lisboa - Apto 106">Ed. SG Lisboa - Apto 106</option>
+                            <option value="Ed. SG Lisboa - Apto 201">Ed. SG Lisboa - Apto 201</option>
+                            <option value="Ed. SG Lisboa - Apto 202">Ed. SG Lisboa - Apto 202</option>
+                            <option value="Ed. SG Lisboa - Apto 203">Ed. SG Lisboa - Apto 203</option>
+                            <option value="Ed. SG Lisboa - Apto 204">Ed. SG Lisboa - Apto 204</option>
+                            <option value="Ed. SG Lisboa - Apto 205">Ed. SG Lisboa - Apto 205</option>
+                            <option value="Ed. SG Lisboa - Apto 206">Ed. SG Lisboa - Apto 206</option>
+                            <option value="Ed. SG Lisboa - Apto 301">Ed. SG Lisboa - Apto 301</option>
+                            <option value="Ed. SG Lisboa - Apto 302">Ed. SG Lisboa - Apto 302</option>
+                            <option value="Ed. SG Lisboa - Apto 303">Ed. SG Lisboa - Apto 303</option>
+                            <option value="Ed. SG Lisboa - Apto 304">Ed. SG Lisboa - Apto 304</option>
+                            <option value="Ed. SG Lisboa - Apto 305">Ed. SG Lisboa - Apto 305</option>
+                            <option value="Ed. SG Lisboa - Apto 306">Ed. SG Lisboa - Apto 306</option>
+                            <option value="Casa 01">Casa 01</option>
+                            <option value="Casa 02">Casa 02</option>
+                            <option value="Casa 03">Casa 03</option>
+                            <option value="Casa 04">Casa 04</option>
+                            <option value="Casa 05">Casa 05</option>
+                            <option value="Casa 06">Casa 06</option>
+                            <option value="Casa 07">Casa 07</option>
+                            <option value="Casa 08">Casa 08</option>
+                            <option value="Casa 09">Casa 09</option>
+                            <option value="Casa 10">Casa 10</option>
+                            <option value="Casa 11">Casa 11</option>
+                            <option value="Casa 12">Casa 12</option>
+                            <option value="Casa 13">Casa 13</option>
+                            <option value="Casa 14">Casa 14</option>
+                            <option value="Casa 15">Casa 15</option>
+                            <option value="Casa 16">Casa 16</option>
+                            <option value="Casa 17">Casa 17</option>
+                            <option value="Casa 18">Casa 18</option>
+                            <option value="Casa 19">Casa 19</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+                </section>
+
+                <!-- Seção 2: Dependentes -->
+                <section class="form-group">
+                    <h2>Dependentes</h2>
+
+                    <div class="field">
+                        <label for="nomeDependente1">Nome do Dependente 1</label>
+                        <input type="text" id="nomeDependente1" name="nomeDependente1">
+                    </div>
+
+                    <div class="field">
+                        <label for="grauParentesco">Grau de Parentesco</label>
+                        <input type="text" id="grauParentesco" name="grauParentesco"
+                            placeholder="Ex: Cônjuge, Filho(a)">
+                    </div>
+
+                    <div class="field">
+                        <label for="telefone">Telefone/WhatsApp do Dependente</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="field">
+                        <label for="dataNascimento">Data de Nascimento do Dependente</label>
+                        <input type="date" id="dataNascimento" name="dataNascimento">
+                    </div>
+
+                    <div class="field">
+                        <label for="outrosDependentes">Outros Dependentes (Nome/Parentesco/Nasc)</label>
+                        <textarea id="outrosDependentes" name="outrosDependentes" rows="4"
+                            placeholder="Liste outros dependentes aqui..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Seção 3: Animais de Estimação -->
+                <section class="form-group">
+                    <h2>Animais de Estimação</h2>
+
+                    <div class="field">
+                        <label>Possui animal no PNR? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="possuiAnimal" value="Sim" required>
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="possuiAnimal" value="Não" required>
+                                <span>Não</span>
+                            </label>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="field" id="animalFields" style="display: none;">
+                        <div class="field">
+                            <label for="especie">Espécie</label>
+                            <select id="especie" name="especie">
+                                <option value="">Selecione...</option>
+                                <option value="Cão">Cão</option>
+                                <option value="Gato">Gato</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="nomeAnimal">Nome do Animal</label>
+                            <input type="text" id="nomeAnimal" name="nomeAnimal">
+                        </div>
+
+                        <div class="field">
+                            <label for="vacinacao">Vacinação</label>
+                            <select id="vacinacao" name="vacinacao">
+                                <option value="">Selecione...</option>
+                                <option value="Em dia">1. Em dia</option>
+                                <option value="Pendente">2. Pendente</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção 4: Termo de Compromisso -->
+                <section class="form-group">
+                    <h2>Termo de Compromisso</h2>
+
+                    <div class="field">
+                        <label>Declaro estar ciente: *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="termo1" value="Normas do PNR" required>
+                                <span>Das normas e regulamentos do PNR</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="termo2" value="Responsabilidade pelos dependentes"
+                                    required>
+                                <span>Da minha responsabilidade pelos dependentes cadastrados</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="termo3" value="Responsabilidade pelos animais" required>
+                                <span>Da minha responsabilidade pelos animais de estimação</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="termo4" value="Atualização de dados" required>
+                                <span>Do compromisso de manter os dados atualizados</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="termo5" value="Veracidade das informações" required>
+                                <span>Da veracidade das informações prestadas</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="termo6" value="Penalidades" required>
+                                <span>Das penalidades em caso de descumprimento</span>
+                            </label>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                </section>
+
+                <div id="validationErrors" class="validation-errors" style="display: none;">
+                    <h3>⚠️ Campos obrigatórios não preenchidos:</h3>
+                    <ul id="errorList"></ul>
+                </div>
+
+                <button type="submit" class="submit-btn">📤 Enviar Cadastro</button>
+            </form>
+        </div>
+
+        <!-- Seção de Resumo (oculta inicialmente) -->
+        <div id="summarySection" class="summary-section" style="display: none;">
+            <div class="success-header">
+                <div class="success-icon">✓</div>
+                <h2>Cadastro Enviado com Sucesso!</h2>
+                <p>Confira abaixo as informações enviadas:</p>
+            </div>
+
+            <div id="summaryContent" class="summary-content"></div>
+
+            <button onclick="resetForm()" class="reset-btn">Enviar Novo Cadastro</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
