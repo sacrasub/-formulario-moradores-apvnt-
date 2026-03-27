@@ -373,7 +373,10 @@ function displaySummary(data) {
                 <div class="summary-value">${data.termos.termo6}</div>
             </div>
         </div>
+        </div>
     `;
+
+    window.lastSubmittedData = data;
 
     // Transição suave
     formSection.classList.add('fade-out');
@@ -414,4 +417,129 @@ function resetForm() {
         formSection.classList.remove('fade-out');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 300);
+}
+
+window.baixarFichaPDF = async function() {
+    const data = window.lastSubmittedData;
+    if (!data) {
+        alert("Nenhum dado encontrado para gerar o PDF.");
+        return;
+    }
+    
+    const safeGet = (section, key) => data[section] && data[section][key] ? String(data[section][key]).toUpperCase() : '';
+
+    const html = `
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ficha de Cadastro - Vila Naval</title>
+        <style>
+            body { font-family: 'Arial', sans-serif; color: #000; line-height: 1.4; margin:0; padding:20px; }
+            .header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; }
+            .header h1 { font-size: 16pt; margin: 5px 0 0 0; text-transform: uppercase; }
+            h2 { font-size: 12pt; background-color: #f0f0f0; border: 1px solid #000; padding: 5px; margin-top: 20px; }
+            .row { display: flex; flex-wrap: wrap; margin-bottom: 10px; }
+            .field { flex: 1; padding: 0 5px; }
+            .field-label { font-weight: bold; font-size: 9pt; }
+            .field-value { border-bottom: 1px solid #000; padding: 3px 0; min-height: 20px; font-size: 11pt; text-transform: uppercase; }
+            .box { border: 1px solid #000; padding: 10px; margin-bottom: 10px; }
+            .obs { font-size: 8pt; font-style: italic; margin-top: 30px; text-align: justify;}
+            .signature { margin-top: 50px; text-align: center; width: 100%; display: flex; justify-content: space-around;}
+            .sig-line { border-top: 1px solid #000; width: 40%; padding-top: 5px; font-size: 10pt; }
+        </style>
+    </head>
+    <body onload="window.print(); window.onafterprint = function(){ window.close(); }">
+        <div class="header">
+            <h1>MARINHA DO BRASIL</h1>
+            <h2>Vila Naval de Tabatinga (APVNT) - Ficha de Cadastro/Atualização</h2>
+        </div>
+        
+        <h2>DADOS DO PERMISSIONÁRIO (TITULAR)</h2>
+        <div class="box">
+            <div class="row">
+                <div class="field" style="flex: 2;"><div class="field-label">NOME COMPLETO:</div><div class="field-value">${safeGet('dadosPessoais', 'nomeCompleto')}</div></div>
+                <div class="field" style="flex: 1;"><div class="field-label">POSTO/GRADUAÇÃO:</div><div class="field-value">${safeGet('dadosPessoais', 'posto')}</div></div>
+            </div>
+            <div class="row">
+                <div class="field"><div class="field-label">NIP:</div><div class="field-value">${safeGet('dadosPessoais', 'nip')}</div></div>
+                <div class="field"><div class="field-label">CPF:</div><div class="field-value">${safeGet('dadosPessoais', 'cpf')}</div></div>
+                <div class="field"><div class="field-label">DATA NASCIMENTO:</div><div class="field-value">${safeGet('dadosPessoais', 'dataNascimentoTitular')}</div></div>
+            </div>
+            <div class="row">
+                <div class="field" style="flex: 1;"><div class="field-label">ENDEREÇO NA APVNT (PNR):</div><div class="field-value">${safeGet('dadosPessoais', 'endereco')}</div></div>
+            </div>
+        </div>
+        
+        <h2>DADOS DOS DEPENDENTES / AGREGADOS</h2>
+        <div class="box">
+            <div class="row">
+                <div class="field" style="flex: 2;"><div class="field-label">1. NOME DO DEPENDENTE:</div><div class="field-value">${safeGet('dependentes', 'nomeDependente1')}</div></div>
+                <div class="field"><div class="field-label">GRAU DE PARENTESCO:</div><div class="field-value">${safeGet('dependentes', 'grauParentesco')}</div></div>
+            </div>
+            <div class="row">
+                <div class="field"><div class="field-label">TELEFONE:</div><div class="field-value">${safeGet('dependentes', 'telefone')}</div></div>
+                <div class="field"><div class="field-label">DATA DE NASCIMENTO:</div><div class="field-value">${safeGet('dependentes', 'dataNascimento')}</div></div>
+            </div>
+            <div class="row mt-2">
+                <div class="field"><div class="field-label">OUTROS DEPENDENTES:</div><div class="field-value" style="min-height: 40px;">${safeGet('dependentes', 'outrosDependentes')}</div></div>
+            </div>
+        </div>
+        
+        <h2>ANIMAIS DE ESTIMAÇÃO NO PNR</h2>
+        <div class="box">
+            <div class="row">
+                <div class="field"><div class="field-label">POSSUI ANIMAL?</div><div style="font-size:11pt; padding:5px 0;"> ${data.animais.possuiAnimal === 'Sim' ? '( X )' : '(   )'} SIM &nbsp;&nbsp; ${data.animais.possuiAnimal === 'Não' ? '( X )' : '(   )'} NÃO</div></div>
+                <div class="field"><div class="field-label">ESPÉCIE:</div><div class="field-value">${safeGet('animais', 'especie')}</div></div>
+            </div>
+            <div class="row">
+                <div class="field" style="flex: 2;"><div class="field-label">NOME DO ANIMAL:</div><div class="field-value">${safeGet('animais', 'nomeAnimal')}</div></div>
+            </div>
+            <div class="row">
+                <div class="field"><div class="field-label">VACINAS EM DIA?</div><div style="font-size:11pt; padding:5px 0;"> ${data.animais.vacinacao === 'Em dia' ? '( X )' : '(   )'} SIM &nbsp;&nbsp; ${data.animais.vacinacao === 'Pendente' ? '( X )' : '(   )'} NÃO </div></div>
+            </div>
+        </div>
+        
+        <p class="obs">
+            Atesto sob as penas da lei e dos regulamentos militares a veracidade das informações ora prestadas, e comprometo-me a informar à Prefeitura da Vila Naval (Sistema APVNT) quaisquer atualizações ocorridas.
+        </p>
+        
+        <div class="signature">
+            <div class="sig-line">Local e Data</div>
+            <div class="sig-line">Assinatura do Permissionário</div>
+        </div>
+    </body>
+    </html>
+    `;
+
+    if (typeof html2pdf !== 'undefined') {
+        let opt = {
+            margin: 10,
+            filename: 'ficha_cadastro_' + (data.dadosPessoais.nip || 'novo') + '.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        
+        let container = document.createElement('div');
+        container.innerHTML = html;
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
+        container.style.width = '210mm'; 
+        container.style.backgroundColor = 'white';
+        document.body.appendChild(container);
+        
+        const btn = document.getElementById('btnBaixarPdf');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = 'Gerando PDF...';
+        btn.disabled = true;
+
+        html2pdf().set(opt).from(container).save().then(() => {
+            document.body.removeChild(container);
+            btn.innerHTML = oldText;
+            btn.disabled = false;
+        });
+    } else {
+        alert("Erro: Biblioteca PDF não carregada.");
+    }
 }
